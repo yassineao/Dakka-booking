@@ -2,6 +2,10 @@
 
 A comprehensive booking platform built with modern web technologies, featuring a user-friendly frontend for bookings, an admin dashboard for management, and a robust Spring Boot backend API.
 
+## 🌐 Live Demo
+
+Experience Booking platform live: [https://dakka-booking-platform-pdfz.vercel.app/](https://dakka-booking-platform-pdfz.vercel.app/)
+
 ## 🚀 Features
 
 - **User Booking System**: Intuitive booking interface with package selection and calendar integration
