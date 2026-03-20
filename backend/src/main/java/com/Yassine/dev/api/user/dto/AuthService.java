@@ -28,7 +28,7 @@ public class AuthService {
         this.authManager = authManager;
     }
 
-    public String register(String email, String rawPassword) {
+    public String register(String email, String rawPassword, String phoneNumber) {
         if (users.existsByEmail(email)) {
             throw new EntityExistsException("Email already used");
         }
@@ -36,6 +36,7 @@ public class AuthService {
         User u = new User();
         u.setEmail(email);
         u.setPassword(encoder.encode(rawPassword));
+        u.setPhoneNumber(phoneNumber);
         u.setRole(Role.USER); // DEFAULT ROLE USER
         users.save(u);
 

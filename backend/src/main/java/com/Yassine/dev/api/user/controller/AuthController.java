@@ -22,7 +22,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public AuthResponse register(@Valid @RequestBody AuthRequest req) {
-        String token = service.register(req.getEmail(), req.getPassword());
+        String token = service.register(req.getEmail(), req.getPassword(), req.getPhoneNumber());
         return new AuthResponse(token);
     }
 

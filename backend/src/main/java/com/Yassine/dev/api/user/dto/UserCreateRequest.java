@@ -15,6 +15,9 @@ public class UserCreateRequest {
     @Size(min = 8, max = 255)
     private String password;
 
+    @Size(max = 30)
+    private String phoneNumber;
+
     // getters & setters
     public String getEmail() {
         return email;
@@ -30,5 +33,13 @@ public class UserCreateRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

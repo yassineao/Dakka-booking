@@ -9,6 +9,7 @@ public class UserResponse {
 
     private UUID id;
     private String email;
+    private String phoneNumber;
     private Role role;
     private Instant createdAt;
     private Instant updatedAt;
@@ -27,4 +28,7 @@ public class UserResponse {
 
     public Instant getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(Instant updatedAt) { this.updatedAt = updatedAt; }
+
+    public String getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 }

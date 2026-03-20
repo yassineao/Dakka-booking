@@ -12,6 +12,7 @@ public class UserMapper {
         UserResponse r = new UserResponse();
         r.setId(user.getId());
         r.setEmail(user.getEmail());
+        r.setPhoneNumber(user.getPhoneNumber());
         r.setRole(user.getRole());
         r.setCreatedAt(user.getCreatedAt());
         r.setUpdatedAt(user.getUpdatedAt());
@@ -23,6 +24,7 @@ public class UserMapper {
         User user = new User();
 
         user.setEmail(request.getEmail());
+        user.setPhoneNumber(request.getPhoneNumber());
         user.setRole(Role.USER); // default role
 
         return user;
@@ -34,6 +36,9 @@ public class UserMapper {
         }
         if  (request.getPassword() != null) {
             user.setPassword(request.getPassword());
+        }
+        if  (request.getPhoneNumber() != null) {
+            user.setPhoneNumber(request.getPhoneNumber());
         }
 
     }
