@@ -1,49 +1,297 @@
 # Dakka Booking Platform
 
-A comprehensive booking platform built with modern web technologies, featuring a user-friendly frontend for bookings, an admin dashboard for management, and a robust Spring Boot backend API.
+## Case Study: Modern Event Booking System
 
-## 🌐 Live Demo
+### 🎯 Executive Summary
 
-Experience Booking platform live: [https://dakka-booking-platform-pdfz.vercel.app/](https://dakka-booking-platform-pdfz.vercel.app/)
+Dakka Booking Platform is a comprehensive, full-stack event booking solution designed to streamline the reservation process for event spaces and services. Built with modern web technologies, it provides an intuitive user experience for customers while offering powerful management tools for administrators.
 
-## 🚀 Features
+**Live Demo**: [https://dakka-booking-platform-pdfz.vercel.app/](https://dakka-booking-platform-pdfz.vercel.app/)
 
-- **User Booking System**: Intuitive booking interface with package selection and calendar integration
-- **Admin Dashboard**: Comprehensive management interface with analytics, user management, and booking oversight
-- **Secure Authentication**: JWT-based authentication system for both users and administrators
-- **Database Management**: Automated database migrations with Flyway
-- **Modern UI/UX**: Built with Next.js, React, and Tailwind CSS for responsive design
-- **Real-time Calendar**: Interactive calendar for booking management and scheduling
+---
 
-## 🛠 Tech Stack
+## 📋 Problem Statement
 
-### Backend
-- **Java 17**
-- **Spring Boot 4.0.3**
-- **Spring Security** - Authentication and authorization
-- **Spring Data JPA** - Database access
-- **PostgreSQL** - Primary database
-- **Flyway** - Database migrations
-- **JWT** - Token-based authentication
+Traditional event booking systems often suffer from:
+- Complex, outdated user interfaces
+- Manual booking management processes
+- Lack of real-time availability
+- Poor mobile responsiveness
+- Inadequate admin oversight tools
 
-### Frontend
-- **Next.js 16** - React framework
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **Material Tailwind** - Component library
-- **GSAP** - Animations
-- **Lucide React** - Icons
+Dakka addresses these challenges by providing a modern, scalable platform that enhances both user experience and operational efficiency.
 
-### Dashboard
-- **Next.js 16** - React framework
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **Neon Database** - Serverless PostgreSQL
+---
 
-### Database
-- **Neon** - Serverless PostgreSQL hosting
+## 💡 Solution Overview
+
+Dakka delivers a three-tier architecture comprising:
+- **Public Frontend**: Customer-facing booking interface
+- **Admin Dashboard**: Comprehensive management console
+- **REST API Backend**: Secure, scalable service layer
+
+### Key Innovations
+- **Microservices-ready Architecture**: Modular design for future scalability
+- **Real-time Calendar Integration**: Dynamic availability management
+- **JWT-based Security**: Enterprise-grade authentication
+- **Automated Database Migrations**: Reliable schema evolution
+- **Responsive Design**: Seamless cross-device experience
+
+---
+
+## 🏗️ System Architecture
+
+```mermaid
+graph TB
+    A[Frontend - Next.js] --> B[API Gateway / Backend - Spring Boot]
+    C[Dashboard - Next.js] --> B
+    B --> D[PostgreSQL Database - Neon]
+    B --> E[JWT Authentication]
+    B --> F[Flyway Migrations]
+
+    subgraph "Client Layer"
+        A
+        C
+    end
+
+    subgraph "API Layer"
+        B
+        E
+        F
+    end
+
+    subgraph "Data Layer"
+        D
+    end
+```
+
+### Architecture Components
+
+**Client Layer:**
+- **Public Site**: Next.js application for customer bookings
+- **Admin Dashboard**: Next.js application for management operations
+
+**API Layer:**
+- **Spring Boot REST API**: Core business logic and data processing
+- **JWT Security**: Token-based authentication and authorization
+- **Flyway**: Database version control and migrations
+
+**Data Layer:**
+- **Neon PostgreSQL**: Serverless database hosting
+- **JPA Entities**: Object-relational mapping
+
+---
+
+## 🚀 Core Features
+
+### Customer Experience
+- ✅ Intuitive booking interface with package selection
+- ✅ Interactive calendar with real-time availability
+- ✅ Responsive design for all devices
+- ✅ Secure user authentication
+- ✅ Booking confirmation and management
+
+### Administrative Capabilities
+- ✅ Comprehensive dashboard with analytics
+- ✅ User management and access control
+- ✅ Booking oversight and status updates
+- ✅ Real-time reporting and statistics
+- ✅ Bulk operations for efficiency
+
+### Technical Features
+- ✅ RESTful API design
+- ✅ Automated database migrations
+- ✅ JWT token authentication
+- ✅ Type-safe development with TypeScript
+- ✅ Modern UI with Tailwind CSS
+
+---
+
+## 🛠️ Technology Stack
+
+### Backend Architecture
+| Component | Technology | Version | Purpose |
+|-----------|------------|---------|---------|
+| Runtime | Java | 17 | Core language |
+| Framework | Spring Boot | 4.0.3 | REST API development |
+| Security | Spring Security | - | Authentication & authorization |
+| Database | Spring Data JPA | - | Data persistence |
+| Database | PostgreSQL | - | Primary datastore |
+| Hosting | Neon | - | Serverless PostgreSQL |
+| Migrations | Flyway | - | Schema versioning |
+| Auth | JWT | - | Token-based security |
+
+### Frontend Stack
+| Component | Technology | Version | Purpose |
+|-----------|------------|---------|---------|
+| Framework | Next.js | 16 | React framework |
+| Library | React | 19 | UI components |
+| Language | TypeScript | - | Type safety |
+| Styling | Tailwind CSS | - | Utility-first CSS |
+| Components | Material Tailwind | - | UI component library |
+| Animations | GSAP | - | Smooth animations |
+| Icons | Lucide React | - | Icon library |
+
+---
+
+## 📚 API Documentation
+
+### Authentication Endpoints
+
+#### POST `/auth/register`
+Register a new user account.
+
+**Request Body:**
+```json
+{
+  "email": "user@example.com",
+  "password": "securepassword",
+  "phoneNumber": "+1234567890"
+}
+```
+
+**Response:**
+```json
+{
+  "token": "jwt-token-here"
+}
+```
+
+#### POST `/auth/login`
+Authenticate existing user.
+
+**Request Body:**
+```json
+{
+  "email": "user@example.com",
+  "password": "securepassword"
+}
+```
+
+**Response:**
+```json
+{
+  "token": "jwt-token-here"
+}
+```
+
+### Booking Endpoints
+
+#### POST `/api/termine`
+Create a new booking.
+
+**Request Body:**
+```json
+{
+  "name": "Wedding Reception",
+  "hallOrLocation": "Grand Ballroom",
+  "occasion": "WEDDING",
+  "packageName": "Premium Package",
+  "startDate": "2024-06-15T18:00:00",
+  "endDate": "2024-06-15T23:00:00",
+  "description": "Evening reception for 150 guests"
+}
+```
+
+#### GET `/api/termine`
+Retrieve all bookings.
+
+**Response:** Array of booking objects
+
+#### GET `/api/termine/{id}`
+Get booking by ID.
+
+#### PATCH `/api/termine/{id}`
+Update booking details.
+
+#### PATCH `/api/termine/{id}/status`
+Update booking status.
+
+**Parameters:**
+- `status`: PENDING, CONFIRMED, CANCELLED, COMPLETED
+
+#### DELETE `/api/termine/{id}`
+Delete a booking.
+
+---
+
+## 🧪 Testing Strategy
+
+### Backend Testing
+- **Framework**: JUnit 5 with Spring Boot Test
+- **Coverage**: Unit tests for service layers
+- **Integration**: API endpoint testing
+
+### Running Tests
+```bash
+cd backend
+./mvnw test
+```
+
+### Test Structure
+```
+backend/src/test/java/
+├── ApiApplicationTests.java    # Application context tests
+└── [Additional test classes]
+```
+
+### Frontend Testing
+- **Framework**: Jest + React Testing Library (planned)
+- **Coverage**: Component and integration tests
+
+---
+
+## 🚀 Deployment & CI/CD
+
+### GitHub Actions CI Pipeline
+
+Automated CI/CD pipeline ensures code quality and reliable deployments:
+
+```yaml
+# .github/workflows/ci.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Run Backend Tests
+        run: ./mvnw test
+
+  test-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Tests
+        run: npm test
+      - name: Build
+        run: npm run build
+```
+
+### Deployment Strategy
+- **Frontend**: Vercel for static hosting
+- **Backend**: Railway or Heroku for API hosting
+- **Database**: Neon for managed PostgreSQL
+
+---
 
 ## 📋 Prerequisites
 
@@ -52,51 +300,109 @@ Experience Booking platform live: [https://dakka-booking-platform-pdfz.vercel.ap
 - **npm** or **yarn**
 - **PostgreSQL** database (or Neon account)
 
-## 🔧 Installation
+---
 
-### 1. Clone the Repository
+## 🔧 Installation & Setup
+
+### 1. Clone Repository
 ```bash
 git clone <repository-url>
 cd dakka-booking
 ```
 
-### 2. Backend Setup
+### 2. Backend Configuration
 ```bash
 cd backend
 
-# Set environment variables
+# Environment variables
 export PGHOST_UNPOOLED=<your-neon-host>
 export POSTGRES_PASSWORD=<your-db-password>
 export JWT_SECRET=<your-jwt-secret>
 export PORT=8080
 
-# Run the application
+# Start application
 ./mvnw spring-boot:run
 ```
 
 ### 3. Frontend Setup
 ```bash
 cd frontend
-
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
 ```
 
 ### 4. Dashboard Setup
 ```bash
 cd dashboard
-
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
 ```
 
-## 🚀 Usage
+### Access Points
+- **Public Site**: http://localhost:3000
+- **Admin Dashboard**: http://localhost:3001
+- **API**: http://localhost:8080
+
+---
+
+## 🗺️ Roadmap & Issues
+
+### Current Version: v1.0.0
+
+### Upcoming Features
+- [ ] Mobile application (React Native)
+- [ ] Payment integration (Stripe)
+- [ ] Email notifications
+- [ ] Advanced analytics dashboard
+- [ ] Multi-language support
+- [ ] API rate limiting
+- [ ] Real-time notifications (WebSocket)
+
+### Known Issues
+- [ ] Calendar timezone handling
+- [ ] Bulk booking operations optimization
+- [ ] Image upload for venues
+
+### Contributing to Development
+Please see our [GitHub Issues](https://github.com/your-repo/dakka-booking/issues) for current tasks and feature requests.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Guidelines
+- Follow existing code style
+- Add tests for new features
+- Update documentation
+- Ensure all CI checks pass
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 📞 Support & Contact
+
+- **Email**: support@dakka-booking.com
+- **Issues**: [GitHub Issues](https://github.com/your-repo/dakka-booking/issues)
+- **Documentation**: [API Docs](./docs/api.md)
+
+---
+
+**Built with ❤️ using Spring Boot, Next.js, and PostgreSQL**
+
+*This case study demonstrates modern full-stack development practices, from architecture design to deployment automation.*
 
 ### Starting the Application
 1. **Backend**: Runs on `http://localhost:8080`
