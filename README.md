@@ -218,26 +218,66 @@ Delete a booking.
 ## 🧪 Testing Strategy
 
 ### Backend Testing
-- **Framework**: JUnit 5 with Spring Boot Test
-- **Coverage**: Unit tests for service layers
-- **Integration**: API endpoint testing
+- **Framework**: JUnit 5 with Spring Boot Test & Mockito
+- **Coverage**: Unit tests for services, integration tests for controllers
+- **Types**: Service layer unit tests, controller integration tests, repository tests
 
-### Running Tests
+### Running Backend Tests
 ```bash
 cd backend
 ./mvnw test
 ```
 
+### Frontend Testing
+- **Framework**: Jest + React Testing Library
+- **Coverage**: Component tests, integration tests
+- **Setup**: Configured with Next.js and TypeScript support
+
+### Running Frontend Tests
+```bash
+cd frontend
+npm test
+npm run test:coverage  # With coverage report
+```
+
+### Dashboard Testing
+- **Framework**: Jest + React Testing Library
+- **Coverage**: Admin component tests
+- **Setup**: Similar to frontend configuration
+
+### Running Dashboard Tests
+```bash
+cd dashboard
+npm test
+npm run test:coverage  # With coverage report
+```
+
 ### Test Structure
 ```
 backend/src/test/java/
-├── ApiApplicationTests.java    # Application context tests
-└── [Additional test classes]
+├── ApiApplicationTests.java          # Application context tests
+├── termine/
+│   ├── dto/TermineServiceTest.java   # Service unit tests
+│   └── controller/TermineControllerTest.java  # Controller integration tests
+└── user/
+    ├── dto/AuthServiceTest.java      # Auth service unit tests
+    └── controller/AuthControllerTest.java    # Auth controller integration tests
+
+frontend/app/components/
+├── Card.test.tsx                     # Component tests
+└── Navbar.test.tsx                   # Component tests
+
+dashboard/app/components/dashboard/
+└── StatsCards.test.tsx               # Dashboard component tests
 ```
 
-### Frontend Testing
-- **Framework**: Jest + React Testing Library (planned)
-- **Coverage**: Component and integration tests
+### CI/CD Test Integration
+All tests run automatically on:
+- Push to main/develop branches
+- Pull requests
+- Manual workflow dispatch
+
+Test results and coverage reports are generated for each pipeline run.
 
 ---
 

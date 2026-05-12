@@ -42,7 +42,7 @@ jobs:
       - name: Run Frontend Tests
         run: |
           cd frontend
-          npm test
+          npm test -- --coverage --watchAll=false
       - name: Build Frontend
         run: |
           cd frontend
@@ -65,7 +65,7 @@ jobs:
       - name: Run Dashboard Tests
         run: |
           cd dashboard
-          npm test
+          npm test -- --coverage --watchAll=false
       - name: Build Dashboard
         run: |
           cd dashboard
