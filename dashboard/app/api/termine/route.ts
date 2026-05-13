@@ -1,7 +1,8 @@
-import { sql } from "@/lib/db";
+import { getSql } from "@/lib/db";
 
 export async function GET() {
   try {
+    const sql = getSql();
     const termine = await sql`
       SELECT * FROM termine
     `;

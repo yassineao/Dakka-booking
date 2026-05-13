@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import DashboardLayout from "../components/dashboard/dasboard";
 import Sidebar from "../components/Sidebar";
-import Calendar from "../components/Calendar/Calendar";
 
 export default function DashboardPage() {
   const [activeComponent, setActiveComponent] = useState("dashboard");
   const router = useRouter();
-  const [authorized, setAuthorized] = useState(false);
+  const [authorized] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return Boolean(localStorage.getItem("token"));
+  });
 
   function renderComponent() {
     switch (activeComponent) {
@@ -23,15 +25,10 @@ export default function DashboardPage() {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
+    if (!authorized) {
       router.replace("/auth/signin");
-      return;
     }
-
-    setAuthorized(true);
-  }, [router]);
+  }, [authorized, router]);
 
   if (!authorized) {
     return <div>Loading...</div>;
